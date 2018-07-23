@@ -10,7 +10,6 @@ import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
  */
 contract CryptoHerosToken is ERC721Token, Ownable {
   mapping (uint256 => address) internal tokenOwner;
-  uint constant minPrice = 0.01 ether;
 
   struct Hero {
     uint number;
@@ -35,9 +34,8 @@ contract CryptoHerosToken is ERC721Token, Ownable {
   /**
    * Only owner can mint
    */
-  function mint() public payable {
+  function mint() public {
     require(heros.length > 0);
-    require(msg.value >= minPrice);
     uint256 _tokenId = totalSupply();
     tokenOwner[_tokenId] = msg.sender;
     super._mint(msg.sender, _tokenId);
