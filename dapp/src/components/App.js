@@ -12,6 +12,8 @@ import { MetaMask } from './MetaMask/MetaMask';
 import { TweenMax } from "gsap/TweenMax";
 import { Warning } from './Warning/Warning';
 import { getTokenURI } from '../lib/cryptoHerosTokenService';
+
+import Demo from "./Demo";
 import LoadingCoin from './LoadingCoin';
 
 class App extends Component {
@@ -144,6 +146,8 @@ class App extends Component {
           brandItem={brandItem}
         />
 
+
+        <Arena isShowArena={isShowArena} handleBack={this.handleBackFromArena} />
         <Arena 
           isShowArena={isShowArena} 
           handleBack={this.handleBackFromArena} 
