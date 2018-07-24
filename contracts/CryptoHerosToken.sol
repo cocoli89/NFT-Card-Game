@@ -10,62 +10,19 @@ import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
  */
 contract CryptoHerosToken is ERC721Token, Ownable {
   mapping (uint256 => address) internal tokenOwner;
-  uint constant minPrice = 0.01 ether;
 
-  string[] public images;
-  string[] public backgrounds;
-  string[] public descriptions;
-  uint[] public numbers;
-
-  struct Hero {
-    uint number;
-    string image;
-    string background;
-    string description;
-  }
-
-  uint nonce = 0;
-  Hero[] public heros;
-  
-  mapping(uint256 => Hero) public tokenProperty;
-  
   constructor(string name, string symbol) public
     ERC721Token(name, symbol)
   { }
 
-  function initImage(string _image) public onlyOwner {
-    images.push(_image);
-  }
-
-  function initBackground(string _background) public onlyOwner {
-    backgrounds.push(_background);
-  }
-
-  function initNumberAndDescription(uint _number, string _description) public onlyOwner {
-    numbers.push(_number);
-    descriptions.push(_description);
-  }
-
   /**
    * Only owner can mint
    */
-  function mint() public payable {
-    require(numbers.length > 0);
-    require(images.length > 0);
-    require(backgrounds.length > 0);
-    require(descriptions.length > 0);
-    require(msg.value >= minPrice);
-    require(owner.send(msg.value));
+  function mint(address _to, string _uri) public onlyOwner {
     uint256 _tokenId = totalSupply();
-    tokenOwner[_tokenId] = msg.sender;
-    uint num = rand(0, numbers.length);
-    uint _number = numbers[num];
-    string _image = images[rand(0, images.length)];
-    string _background = backgrounds[rand(0, backgrounds.length)];
-    string _description = descriptions[num];
-    heros.push(Hero({number: _number, image: _image, background: _background, description: _description}));
-    tokenProperty[_tokenId] = Hero({number: _number, image: _image, background: _background, description: _description});
-    super._mint(msg.sender, _tokenId);
+    tokenOwner[_tokenId] = _to;
+    super._mint(_to, _tokenId);
+    super._setTokenURI(_tokenId, _uri);
   }
 
   function burn(uint256 _tokenId) public onlyOwner {
@@ -73,23 +30,11 @@ contract CryptoHerosToken is ERC721Token, Ownable {
     super._burn(ownerOf(_tokenId), _tokenId);
   }
 
+  function setTokenURI(uint256 _tokenId, string _uri) public onlyOwnerOf(_tokenId) {
+    super._setTokenURI(_tokenId, _uri);
+  }
+
   function getOwnedTokens(address _owner) external view returns (uint256[]) {
     return ownedTokens[_owner];
   }
-
-  function getTokenProverty(uint256 _tokenId) external view returns (uint) {
-    // number = tokenProperty[_tokenId].number;
-    // image = tokenProperty[_tokenId].image;
-    return tokenProperty[_tokenId].number;
-  }
-
-  function rand(uint min, uint max) private returns (uint){
-    nonce++;
-    return uint(sha3(nonce))%(min+max)-min;
-  }
-
-  function getLength() public returns (uint) {
-    return heros.length;
-  }
-  
 }
