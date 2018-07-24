@@ -10,10 +10,21 @@ contract CryptoHerosGame is Ownable {
   uint constant minHerosToken = 5 ether;
 
   //address public cryptoHerosGame = 0x0;
+  uint256 public maxGameId = 0;
   uint256 public maxSingleGameId = 0;
 
   uint nonce = 0;
   CryptoHerosToken cryptoHerosToken;
+
+  struct Game {
+    address winner;
+    address creator;
+    address participant;
+    uint256 creatorTokenId;
+    uint256 participantTokenId;
+    uint256 creatorBet;
+    uint256 participantBet;
+  }
 
   struct SingleGame {
     address player;
@@ -24,6 +35,7 @@ contract CryptoHerosGame is Ownable {
     uint8 result; // 0 user win, 1 contract win, 2 draw
   }
 
+  Game[] public games;
   SingleGame[] public singleGames;
 
   constructor(CryptoHerosToken _cryptoHerosToken) public { 
@@ -36,8 +48,8 @@ contract CryptoHerosGame is Ownable {
 
     uint userTokenNumber;
     uint contractTokenNumber;
-    (userTokenNumber, , ,) = cryptoHerosToken.getTokenProperty(_tokenId);
-    (contractTokenNumber, , ,) = cryptoHerosToken.getTokenProperty(rand(0, cryptoHerosToken.getHerosLength()));
+    (userTokenNumber, , ,) = cryptoHerosToken.getTokenProverty(_tokenId);
+    (contractTokenNumber, , ,) = cryptoHerosToken.getTokenProverty(rand(0, cryptoHerosToken.getHerosLength()));
 
     int result;
     uint8 game = uint8(rand(0, 2));
@@ -67,12 +79,6 @@ contract CryptoHerosGame is Ownable {
   function rand(uint min, uint max) private returns (uint){
     nonce++;
     return uint(sha3(nonce))%(min+max)-min;
-  }
-
-  function withdraw(uint amount) public payable onlyOwner returns(bool) {
-    require(amount <= this.balance);
-    owner.transfer(amount);
-    return true;
   }
 
 }
