@@ -1,28 +1,5 @@
 [
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "address"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "usersSingleGames",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
@@ -39,20 +16,6 @@
 		],
 		"payable": true,
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getUserSingleGames",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -93,7 +56,7 @@
 				"type": "address"
 			},
 			{
-				"name": "userResult",
+				"name": "playerTokenId",
 				"type": "uint256"
 			},
 			{
@@ -174,11 +137,6 @@
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
-	},
-	{
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "fallback"
 	},
 	{
 		"anonymous": false,

@@ -16,14 +16,3 @@ const setWeb3Provider = (networkId) => {
 export const createSingleGame = (tokenId) => {
   return cryptoHerosGame.createSingleGame(tokenId);
 }
-
-export const doGetUserSingleGames = (networkId) => {
-  try {
-    setWeb3Provider(networkId);
-    const result = cryptoHerosGame.getUserSingleGames();
-    return result;
-  } catch (err) {
-    console.log('doGetUserSingleGames: ', err);
-    return 'getUserSingleGames not found';
-  }
-}
