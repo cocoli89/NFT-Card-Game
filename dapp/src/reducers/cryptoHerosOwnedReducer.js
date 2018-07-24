@@ -2,8 +2,7 @@ import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 
 const fetchOwned = (state, action) => {
-  console.log("fetchOwned:", action.result);
-  if(action.callBack) action.callBack(action.result);
+  console.log(action.result);
   return action.result;
 }
 
