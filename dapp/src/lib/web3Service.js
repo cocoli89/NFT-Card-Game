@@ -33,7 +33,22 @@ export const getCryptoHerosTokenAddress = (networkId) => {
     case '1':
       return '0x0';
     case '3':
-      return '0x5dff6cabf3bfcf331617f110d377b332134e1782';
+      return '0x3c8ef43a941f233da1367a6dd975eea963b594a4';
+    case '4':
+      return '0x0';
+    case '42':
+      return '0x0';
+    default:
+      return '0x0';
+  }
+}
+
+export const getCryptoHerosGameAddress = (networkId) => {
+  switch (networkId) {
+    case '1':
+      return '0x0';
+    case '3':
+      return '0x0';
     case '4':
       return '0x0';
     case '42':

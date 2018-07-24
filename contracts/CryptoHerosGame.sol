@@ -10,21 +10,10 @@ contract CryptoHerosGame is Ownable {
   uint constant minHerosToken = 5 ether;
 
   //address public cryptoHerosGame = 0x0;
-  uint256 public maxGameId = 0;
   uint256 public maxSingleGameId = 0;
 
   uint nonce = 0;
   CryptoHerosToken cryptoHerosToken;
-
-  struct Game {
-    address winner;
-    address creator;
-    address participant;
-    uint256 creatorTokenId;
-    uint256 participantTokenId;
-    uint256 creatorBet;
-    uint256 participantBet;
-  }
 
   struct SingleGame {
     address player;
@@ -35,7 +24,6 @@ contract CryptoHerosGame is Ownable {
     uint8 result; // 0 user win, 1 contract win, 2 draw
   }
 
-  Game[] public games;
   SingleGame[] public singleGames;
 
   constructor(CryptoHerosToken _cryptoHerosToken) public { 
@@ -44,65 +32,37 @@ contract CryptoHerosGame is Ownable {
 
   function createSingleGame(uint _tokenId) payable public returns (uint256) {
     require(msg.value >= minPrice);
-    // 判斷合約有沒有錢跟他玩
     require(cryptoHerosToken.ownerOf(_tokenId) == msg.sender);
 
-    // 取得 number 進行比大小
-    uint userTokenNumber = cryptoHerosToken.getTokenProverty(_tokenId);
-    uint contractNumber = cryptoHerosToken.getTokenProverty(rand(0, cryptoHerosToken.getHerosLength()));
+    uint userTokenNumber;
+    uint contractTokenNumber;
+    (userTokenNumber, , ,) = cryptoHerosToken.getTokenProverty(_tokenId);
+    (contractTokenNumber, , ,) = cryptoHerosToken.getTokenProverty(rand(0, cryptoHerosToken.getHerosLength()));
 
     int result;
     uint8 game = uint8(rand(0, 2));
     if (game > 0) {
-      result = int(userTokenNumber - contractNumber);
+      result = int(userTokenNumber - contractTokenNumber);
     } else {
-      result = int(contractNumber - userTokenNumber);
+      result = int(contractTokenNumber - userTokenNumber);
     }
 
     SingleGame memory _singleGame;
     if (result == 0) {
-      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractNumber, playerBet: msg.value, game: game, result: 2});
-      msg.sender.send(msg.value * 1 - gameFee);
+      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractTokenNumber, playerBet: msg.value, game: game, result: 2});
+      require(msg.sender.send(msg.value * 1 - gameFee));
 
     } else if (result > 0) {
-      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractNumber, playerBet: msg.value, game: game, result: 0});
-      msg.sender.send(msg.value * 150 / 100);
+      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractTokenNumber, playerBet: msg.value, game: game, result: 0});
+      require(msg.sender.send(msg.value * 150 / 100));
 
     } else {
-      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractNumber, playerBet: msg.value, game: game, result: 1});
+      _singleGame = SingleGame({player: msg.sender, playerTokenId: userTokenNumber, contractResult: contractTokenNumber, playerBet: msg.value, game: game, result: 1});
     }
 
     maxSingleGameId = singleGames.push(_singleGame) - 1;
     return maxSingleGameId;
   }
-
-  /*
-  function createGame(uint _tokenId) payable public returns (uint256) {
-    // 創建遊戲，回傳 id
-    require(msg.value > 0);
-    // Create new game id
-    Game memory _game = Game({ winner: 0x0, creator: msg.sender, creatorTokenId: _tokenId, creatorBet: msg.value, participant: 0x0, participantTokenId: 0, participantBet: 0 });
-    maxGameId = games.push(_game) - 1;
-    return maxGameId;
-  }
-
-  function paricipantGame(uint _gameId, uint _tokenId) payable public returns (bool) {
-    // 要驗證主合約
-    require(msg.value > 0);
-    // game exists
-    require(_gameId < maxGameId);
-    Game memory _game = games[_gameId];
-    require(_game.winner == 0x0);
-    games[_gameId] = Game({ winner: 0x0, creator: _game.creator, creatorTokenId: _game.creatorTokenId, creatorBet: _game.creatorBet, participant: msg.sender, participantTokenId: _tokenId, participantBet: msg.value });
-  }
-
-  function revealGame(uint _gameId) payable public returns (address) {
-    // 判斷贏家
-    Game memory _game = games[_gameId];
-    require(_game.creator != 0x0);
-    require(_game.participant != 0x0);
-  }
-  */
 
   function rand(uint min, uint max) private returns (uint){
     nonce++;
