@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.png';
+import githublogo from '../images/github-icon2.png';
 import './indexUi.css';
 export default class className extends Component{
     render() {
@@ -17,17 +18,9 @@ export default class className extends Component{
                 <div className="ui start1"></div>
                 <div className="ui start2"></div>
                 <div className="ui start3"></div>
-                <div className="linkBOx">
-                    <a className="linkIcon github" href="https://github.com/PortalNetwork/nifty-game" target="_blank">
-                        <i className="fab fa-github fa-2x"></i>
-                    </a>
-                    <a className="linkIcon telegram" href="https://t.me/portalnetworkofficial" target="_blank">
-                        <i className="fab fa-telegram fa-2x"></i>
-                    </a>
-                    <a className="linkIcon email" href="mailto:support@portal.network">
-                        <i className="fas fa-envelope fa-2x"></i>
-                    </a>
-                </div>
+                <a className="github" href="https://github.com/PortalNetwork/nifty-game" target="_blank">
+                    <img className="githublogo" src={githublogo} />
+                </a>
                 <div className="ui Elf0"></div>
                 <div className="ui Elf1"></div>
                 <div className="ui Elf2"></div>

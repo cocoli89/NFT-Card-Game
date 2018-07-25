@@ -89,7 +89,6 @@
     }
 
     &.bg_footer {
-      position: fixed;
       bottom: 0;
       width: 100%;
       height: 159px;
@@ -253,22 +252,7 @@
   }
 
   & .center {
-    flex-direction: column;
     align-items: center;
-
-    & span {
-      margin-top: 10px;
-      font-size: 32px;
-      font-weight: 600;
-
-      &.big {
-        color: #FFF100;
-      }
-
-      &.small {
-        color: #FFF100;
-      }
-    }
   }
 }
 

@@ -15,7 +15,6 @@ const messages = {
   'METAMASK_ACCOUNT': 'You have choosen the MetamMask Wallet: ',
   'NETWORK_ERROR': 'Network error, please check it.',
   'METAMASK_NOT_INSTALL': 'You must install MetaMask before start.',
-  'METAMASK_TEST_NET': 'Our game is available on Ropsten Test Network only. Please switch via MetaMask!'
 };
 
 const MetaMaskInstallDialog = (props) => (
@@ -48,12 +47,12 @@ const MetaMaskLockDialog = (props) => (
     <DialogTitle>{"Oops, your MetaMask is locked"}</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        {props.message}
+        {"You should unlock MetaMask to interact with this application."}
       </DialogContentText>
     </DialogContent>
     <DialogActions>
       <Button raised onClick={props.handleMetaMaskLockDialogClose} color="primary">
-        OK
+        I understand, continue
       </Button>
     </DialogActions>
   </Dialog>
@@ -105,13 +104,6 @@ export class MetaMask extends Component {
     //const { web3 } = window;
     if (this.props.web3 !== null) {
       this.props.web3.version.getNetwork((err, netId) => {
-        console.log('netId:',netId);
-        if(netId === "1"){
-          this.props.handleMetaMaskNetwork(null);
-          this.setState({metaMaskLockDialogOpen: true, message:messages.METAMASK_TEST_NET  });
-        }
-
-        
         if (err) {
           this.props.handleMetaMaskNetwork(null);
           this.setState({metaMaskLockDialogOpen: true, message: messages.NETWORK_ERROR });

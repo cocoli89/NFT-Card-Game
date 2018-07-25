@@ -3,7 +3,6 @@
 </p>
 
 <p align=center>
-<a target="_blank" href="https://gitter.im/PortalNetwork/nifty-game?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/PortalNetwork/nifty-game.svg"/></a>
 <a target="_blank" href="https://travis-ci.org/PortalNetwork/nifty-game.svg?branch=develop" title="Build status"><img src="https://travis-ci.org/PortalNetwork/nifty-game.svg?branch=develop"></a>
 <a target="_blank" href="https://reactjs.org/" title="React"><img src="https://img.shields.io/badge/react-%3E%2016.1.1-brightgreen.svg"></a>
 <a target="_blank" href="http://nodejs.org/download/" title="Node version"><img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-brightgreen.svg"></a>
@@ -23,13 +22,8 @@ The contract is compiled and deployed under the ERC-721 non-fungible token stand
 Acquiring game card:
 Users can acquire game cards using ETH. Every game card will have a game point on it, which will be used to determine the winner later in the game.
 
-## Roles
-
-#### Card collection
-Players can aquire card using ether. Each card will have a random points on it, which will be used to deternmine the winner in the card game.
-
-#### Card Battle
-Once entered the game, players will need to choose a card to play for the round. Each round, the smart contract will randomly decide either card with larger or smaller point wins the round. At the same time, the smart contract will also randomly generate a number in order to compete with the player. Winner of the game will receive the price.
+Playing the game:
+Once entered the game, players will need to choose a card to play for the round. Each round, the smart contract will randomly decide either card with larger or smaller point wins the round. At the same time, the smart contract will also randomly generate a number in order to compete with the player. Winner of the game will be able to win the bet put in.
 
 ## ERC-721 Token
 
@@ -118,8 +112,8 @@ We already deployed contracts to [Ropsten](https://ropsten.etherscan.io/) networ
 
 | Contract         | Token address | Transaction hash
 |------------------|---------------|---------------------
-| CryptoHerosGame  | [0xb4FF27d8cD1C5b1e3D4BD8A8FFEBdA9BE9517a4b](https://ropsten.etherscan.io/address/0xb4ff27d8cd1c5b1e3d4bd8a8ffebda9be9517a4b) | [0x49bb8698e2951a0c7eb091038b500694cdf37c74ec51d6c98d91823dc9595b95](https://ropsten.etherscan.io/tx/0x49bb8698e2951a0c7eb091038b500694cdf37c74ec51d6c98d91823dc9595b95)
-| CryptoHerosToken | [0xa82Bc392bF65d03A796E1666d27594fB31De4B93](https://ropsten.etherscan.io/address/0xa82bc392bf65d03a796e1666d27594fb31de4b93) | [0xf41868e6b59020965831aac218e1a521b283ab4975f10a44cf0908f6ce586ad7](https://ropsten.etherscan.io/tx/0xf41868e6b59020965831aac218e1a521b283ab4975f10a44cf0908f6ce586ad7)
+| CryptoHerosGame  | [0x0B6211662d7fcAa5B0DF771dBE49996c4b08d3C9](https://ropsten.etherscan.io/address/0x0b6211662d7fcaa5b0df771dbe49996c4b08d3c9) | [0xd09a7c09e70a8d9d9933138ca5b54757b64fe3f076defc0a8cb1bf3e9eb75889](https://ropsten.etherscan.io/tx/0xd09a7c09e70a8d9d9933138ca5b54757b64fe3f076defc0a8cb1bf3e9eb75889)
+| CryptoHerosToken | [0xf70F7d4e063E50B68a08db043f6345ea68A446bE](https://ropsten.etherscan.io/address/0xf70f7d4e063e50b68a08db043f6345ea68a446be) | [0xd6f3989edb1df46325ab4df12fbc6efbde10088ca18e1e2cee866ce03d66751d](https://ropsten.etherscan.io/tx/0xd6f3989edb1df46325ab4df12fbc6efbde10088ca18e1e2cee866ce03d66751d)
 
 ## Card List
 
