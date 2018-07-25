@@ -33,9 +33,9 @@ import user14 from '../../images/user/user14.png';
 import { getCryptoHerosGameAddress } from '../../lib/web3Service';
 import { doCreateSingleGame, doGetUserSingleGames, getSingleGame, } from '../../lib/cryptoHerosGameService';
 import axios from 'axios';
-import NiftyAlert from "../NiftyAlert";
 
 const cx = classnames.bind(style);
+
 export default class extends React.Component {
   state = {
     selectedCardIdx: 0,
@@ -46,24 +46,13 @@ export default class extends React.Component {
     hasBattleResult: false,
     battleResult: {},
     historyGames: [],
-    isErrorOpen: false,
-    errorMessage: ''
-  }
-
-  handleAlertOpen=(errmag)=>{
-    this.setState({isErrorOpen: true, errorMessage: errmag})
-  }
-
-  handleAlertClose=()=>{
-    this.setState({isErrorOpen: false})
   }
 
   // 賭金輸入
   handleBetETHChange = e => {
     let betEth = e.target.value;
     if (betEth > 1) {
-      this.handleAlertOpen("bet eth should not bigger than 1");
-      // alert('bet eth should not bigger than 1');
+      alert('bet eth should not bigger than 1');
       betEth = 0.01;
     }
 
@@ -86,8 +75,7 @@ export default class extends React.Component {
     const { account, network } = metaMask;
 
     if (betEth > 1 || betEth < 0.01) {
-      
-      this.handleAlertOpen("bet eth should not be bigger than 1 and less than 0.01");
+      alert('bet eth should not be bigger than 1 and less than 0.01');
       return;
     }
     const selectedCard = this.props.cards[selectedCardIdx];
@@ -106,7 +94,7 @@ export default class extends React.Component {
     
     web3.eth.sendTransaction(tx, (err, response) => {
       if(err) {
-        this.handleAlertOpen("Sorry, transaction failed");
+        alert('Sorry, transaction failed');
         this.setState({
           isLoading: false,
         });
@@ -407,15 +395,6 @@ export default class extends React.Component {
 
         {
           isLoading && <LoadingCoin />
-        }
-
-        { 
-          this.state.isErrorOpen && 
-          <NiftyAlert 
-            isOpenAlert={this.state.isErrorOpen}
-            errorMessage={this.state.errorMessage}
-            handleAlertClose={this.handleAlertClose}
-          />
         }
       </div>
     )
