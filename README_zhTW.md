@@ -3,6 +3,7 @@
 </p>
 
 <p align=center>
+<a target="_blank" href="https://gitter.im/PortalNetwork/nifty-game?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/PortalNetwork/nifty-game.svg"/></a>
 <a target="_blank" href="https://travis-ci.org/PortalNetwork/nifty-game.svg?branch=develop" title="Build status"><img src="https://travis-ci.org/PortalNetwork/nifty-game.svg?branch=develop"></a>
 <a target="_blank" href="https://reactjs.org/" title="React"><img src="https://img.shields.io/badge/react-%3E%2016.1.1-brightgreen.svg"></a>
 <a target="_blank" href="http://nodejs.org/download/" title="Node version"><img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-brightgreen.svg"></a>
@@ -19,10 +20,15 @@
 這是一款加密卡牌遊戲，使用[OpenZepplin](https://github.com/OpenZeppelin/openzeppelin-solidity)。
 在ERC-721 non-fungible token 標準下建置合約，透過truffle框架編寫及部署合約，合約部署之後，使用者可以透過前端來跟dApp互動，再由dApp呼叫部署在以太坊上的合約來進行遊戲。
 
-遊戲方式：
-    玩家先使用ether來兌換卡牌，每張卡牌上面有不一樣的點數。 擁有卡牌之後可以開始對戰，對戰開始之前玩家必須先選擇自己要出的卡牌，之後系統會隨機決定此回合是比大或是比小，並且隨機產生點數，玩家獲勝之後可獲得獎勵。
+## 遊戲方式
 
-## ERC-721 Token
+#### 卡牌收集
+玩家先使用ether來兌換卡牌，每張卡牌上面有不一樣的點數。
+
+#### 卡牌對戰
+擁有卡牌之後可以開始對戰，對戰開始之前玩家必須先選擇自己要出的卡牌，之後系統會隨機決定此回合是比大或是比小，並且隨機產生點數，玩家獲勝之後可獲得獎勵。
+
+## ERC-721 Token 
 
 ERC-721 non-fungible token：
     符合這合約的每個token都是不一樣的，擁有獨一無二的token ID，與ERC-20相比，ERC-20的token可以彼此互換的，使用者A的50個token與使用者B的50個token是沒有差別的，但如果是ERC-721的話因為每個token ID都不一樣，所以不可以互換，視為獨立的資產。
@@ -105,8 +111,8 @@ truffle test
 
 | Contract         | Token address | Transaction hash
 |------------------|---------------|---------------------
-| CryptoHerosGame  | [0x0B6211662d7fcAa5B0DF771dBE49996c4b08d3C9](https://ropsten.etherscan.io/address/0x0b6211662d7fcaa5b0df771dbe49996c4b08d3c9) | [0xd09a7c09e70a8d9d9933138ca5b54757b64fe3f076defc0a8cb1bf3e9eb75889](https://ropsten.etherscan.io/tx/0xd09a7c09e70a8d9d9933138ca5b54757b64fe3f076defc0a8cb1bf3e9eb75889)
-| CryptoHerosToken | [0xf70F7d4e063E50B68a08db043f6345ea68A446bE](https://ropsten.etherscan.io/address/0xf70f7d4e063e50b68a08db043f6345ea68a446be) | [0xd6f3989edb1df46325ab4df12fbc6efbde10088ca18e1e2cee866ce03d66751d](https://ropsten.etherscan.io/tx/0xd6f3989edb1df46325ab4df12fbc6efbde10088ca18e1e2cee866ce03d66751d)
+| CryptoHerosGame  | [0xb4FF27d8cD1C5b1e3D4BD8A8FFEBdA9BE9517a4b](https://ropsten.etherscan.io/address/0xb4ff27d8cd1c5b1e3d4bd8a8ffebda9be9517a4b) | [0x49bb8698e2951a0c7eb091038b500694cdf37c74ec51d6c98d91823dc9595b95](https://ropsten.etherscan.io/tx/0x49bb8698e2951a0c7eb091038b500694cdf37c74ec51d6c98d91823dc9595b95)
+| CryptoHerosToken | [0xa82Bc392bF65d03A796E1666d27594fB31De4B93](https://ropsten.etherscan.io/address/0xa82bc392bf65d03a796e1666d27594fb31de4b93) | [0xf41868e6b59020965831aac218e1a521b283ab4975f10a44cf0908f6ce586ad7](https://ropsten.etherscan.io/tx/0xf41868e6b59020965831aac218e1a521b283ab4975f10a44cf0908f6ce586ad7)
 
 ## Card List
 
